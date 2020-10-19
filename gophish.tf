@@ -1,9 +1,9 @@
 resource "digitalocean_droplet" "gophish" {
   image    = "Ubuntu-18-04-x64"
-  name     = "" # ENTER YOUR GOPHISH SERVER'S NAME HERE
+  name     = "SETUP_GOPHISH_SERVER_NAME"
   region   = "nyc1"
   size     = "s-1vcpu-1gb"
-  ssh_keys = [] # ENTER APPROPRIATE SSH KEY VALUE HERE
+  ssh_keys = [data.digitalocean_ssh_key.SETUP_SSH_KEY_NAME.id]
 
   connection {
     host        = self.ipv4_address
