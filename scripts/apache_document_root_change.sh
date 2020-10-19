@@ -1,6 +1,6 @@
 #!/bin/bash
 certbot --apache --preferred-challenges http --register-unsafely-without-email --agree-tos -d <YOUR DOMAIN> -n # obtain SSL cert for domain
-sed -i 's/\/var\/www\/html/\/var\/www\/html\/YOUR WEBSERVER DOCUMENT ROOT/g' /etc/apache2/sites-enabled/000-default.conf # change document root to /var/www/html/jamescurbow.com/
+sed -i 's/\/var\/www\/html/\/var\/www\/html\/YOUR WEBSERVER DOCUMENT ROOT/g' /etc/apache2/sites-enabled/000-default.conf # change document root to /var/www/html/domain/
 sed -i 's/\/var\/www\/html/\/var\/www\/html\/YOUR WEBSERVER DOCUMENT ROOT/g' /etc/apache2/sites-enabled/000-default-le-ssl.conf # same as previous line only for HTTPS site
 service apache2 restart
 # your site should now be accessible over HTTP and HTTPS, with a valid certificate on the HTTPS site.
