@@ -11,16 +11,15 @@ terraform {
 provider "digitalocean" {
   token = var.apikey
 }
-# Variable declarations 
+# Variable declarations
 variable "apikey" {}
 variable "domain" {
-  default = "" # ENTER YOUR DOMAIN
+  default = "SETUP_DOMAIN_VARIABLE"
 }
 variable "private_ssh_key" {
-  default = "" # ENTER YOUR PATH TO THE PRIVATE SSH KEY
+  default = "SETUP_PRIVATE_SSH_KEY_FILE"
 }
 
-data "digitalocean_ssh_key" "demo" {
-  name = "" # ENTER YOUR SSH KEY NAME
+data "digitalocean_ssh_key" "SETUP_SSH_KEY_NAME" {
+  name = "SETUP_SSH_KEY_NAME" 
 }
-    

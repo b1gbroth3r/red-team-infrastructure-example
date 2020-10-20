@@ -3,7 +3,7 @@ resource "digitalocean_droplet" "phishing-rdr" {
   name     = "mail.${var.domain}"
   region   = "nyc1"
   size     = "s-1vcpu-1gb"
-  ssh_keys = [] # ENTER APPROPRIATE SSH KEY VALUE HERE
+  ssh_keys = [data.digitalocean_ssh_key.SETUP_SSH_KEY_NAME.id] # ENTER APPROPRIATE SSH KEY VALUE HERE
 
   connection {
     host        = self.ipv4_address
