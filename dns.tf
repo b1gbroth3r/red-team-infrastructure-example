@@ -3,6 +3,7 @@ resource "digitalocean_record" "wwwroot" {
   type   = "A"
   name   = "@"
   value  = digitalocean_droplet.www.ipv4_address
+  ttl    = 600
 }
 
 resource "digitalocean_record" "wwwcn" {
@@ -10,6 +11,7 @@ resource "digitalocean_record" "wwwcn" {
   type   = "CNAME"
   name   = "www"
   value  = "${var.domain}."
+  ttl    = 600
 }
 
 resource "digitalocean_record" "mail-rdr-A" {
@@ -17,6 +19,7 @@ resource "digitalocean_record" "mail-rdr-A" {
   type   = "A"
   name   = "mail"
   value  = digitalocean_droplet.phishing-rdr.ipv4_address
+  ttl    = 600
 }
 
 resource "digitalocean_record" "mail-rdr-mx" {
@@ -25,6 +28,7 @@ resource "digitalocean_record" "mail-rdr-mx" {
   name     = "@"
   value    = "mail.${var.domain}."
   priority = 10
+  ttl      = 600
 }
 
 resource "digitalocean_record" "mail-rdr-spf" {
@@ -41,4 +45,12 @@ resource "digitalocean_record" "mail-rdr-dmarc" {
   name   = "_dmarc"
   value  = "v=DMARC1; p=reject"
   ttl    = 60
+}
+
+resource "digitalocean_record" "mail-rdr-dkim" {
+  domain = var.domain
+  type   = "TXT"
+  name   = "mail._domainkey"
+  value  = "INSERT DKIM HERE"
+  ttl    = 600
 }
