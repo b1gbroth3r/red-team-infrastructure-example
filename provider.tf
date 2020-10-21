@@ -21,5 +21,5 @@ variable "private_ssh_key" {
 }
 
 data "digitalocean_ssh_key" "SETUP_SSH_KEY_NAME" {
-  name = "SETUP_SSH_KEY_NAME" 
+  name = "SETUP_SSH_KEY_NAME"
 }
