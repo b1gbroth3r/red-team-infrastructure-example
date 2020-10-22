@@ -3,7 +3,7 @@ resource "digitalocean_droplet" "www" {
   name     = var.domain
   region   = "nyc1"
   size     = "s-1vcpu-1gb"
-  ssh_keys = [data.digitalocean_ssh_key.SETUP_SSH_KEY_NAME.id] 
+  ssh_keys = [data.digitalocean_ssh_key.SETUP_SSH_KEY_NAME.id]
 
   connection {
     host        = self.ipv4_address
@@ -21,7 +21,6 @@ resource "digitalocean_droplet" "www" {
       "apt install -y certbot",
       "apt install -y python-certbot-apache",
       "a2enmod rewrite, proxy, proxyhttp, ssl",
-      "sudo mkdir /var/www/html/SETUP_WEBROOT_DIR/",
       "rm /var/www/html/index.html",
       "service apache2 restart"
     ]
