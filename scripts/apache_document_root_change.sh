@@ -1,5 +1,7 @@
 #!/bin/bash
 certbot --apache --preferred-challenges http --register-unsafely-without-email --agree-tos -d SETUP_DOMAIN_VARIABLE -n --redirect # obtain SSL cert for domain
+sed -i '/^ServerName.*/a ServerAlias www.SETUP_DOMAIN_VARIABLE' /etc/apache2/sites-available/000-default-le-ssl.conf
+certbot --apache --preferred-challenges http --register-unsafely-without-email --agree-tos -d SETUP_DOMAIN_VARIABLE,www.SETUP_DOMAIN_VARIABLE --expand -n --redirect # obtain SSL cert for domain
 sed -i 's/\/var\/www\/html/\/var\/www\/html\/SETUP_WEBROOT_DIR/g' /etc/apache2/sites-available/000-default.conf # change document root to /var/www/html/domain/
 sed -i 's/\/var\/www\/html/\/var\/www\/html\/SETUP_WEBROOT_DIR/g' /etc/apache2/sites-available/000-default-le-ssl.conf # same as previous line only for HTTPS site
 service apache2 restart
