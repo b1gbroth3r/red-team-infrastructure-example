@@ -54,3 +54,27 @@ resource "digitalocean_record" "mail-rdr-dkim" {
   value  = "INSERT DKIM HERE"
   ttl    = 600
 }
+
+#evilginx2 requirement
+resource "digitalocean_record" "evil-ns1" {
+  domain = var.domain
+  type   = "NS"
+  name   = "ns1.${var.domain}"
+  value  = digitalocean_droplet.evilginx2.ipv4_address
+}
+
+#evilginx2 requirement
+resource "digitalocean_record" "evil-ns2" {
+  domain = var.domain
+  type   = "NS"
+  name   = "ns1.${var.domain}"
+  value  = digitalocean_droplet.evilginx2.ipv4_address
+}
+
+# not sure if necessary, but this record resolved a lot of my issues with hostname/certificate creation
+resource "digitalocean_record" "evil-wildcard-a" {
+  domain = var.domain
+  type   = "A"
+  name   = "*"
+  value  = digitalocean_droplet.evilginx2.ipv4_address
+}
