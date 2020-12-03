@@ -20,10 +20,7 @@ resource "digitalocean_droplet" "www" {
       "apt install -y apache2",
       "apt install -y certbot",
       "apt install -y python-certbot-apache",
-      "a2enmod rewrite, 
-      "a2enmod proxy", 
-      "a2enmod proxy_http", 
-      "a2enmod ssl",
+      "a2enmod rewrite, proxy, proxyhttp, ssl",
       "rm /var/www/html/index.html",
       "service apache2 restart"
     ]
