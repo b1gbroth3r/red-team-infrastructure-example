@@ -10,7 +10,7 @@ resource "digitalocean_droplet" "evilginx2" {
     user        = "root"
     type        = "ssh"
     private_key = file(var.private_ssh_key)
-    timeout     = "60s"
+    timeout     = "120s"
   }
 
   provisioner "remote-exec" {
@@ -19,7 +19,7 @@ resource "digitalocean_droplet" "evilginx2" {
       "wget https://github.com/kgretzky/evilginx2/releases/download/2.4.0/evilginx-linux-amd64.tar.gz",
       "tar zxvf evilginx-linux-amd64.tar.gz",
       "chmod 700 evilginx/install.sh",
-      "evilginx/install.sh"
+      "cd evilginx && ./install.sh"
     ]
   }
 }
