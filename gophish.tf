@@ -10,7 +10,7 @@ resource "digitalocean_droplet" "gophish" {
     user        = "root"
     type        = "ssh"
     private_key = file(var.private_ssh_key)
-    timeout     = "60s"
+    timeout     = "120s"
   }
 
   provisioner "remote-exec" {

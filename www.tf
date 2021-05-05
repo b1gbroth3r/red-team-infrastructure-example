@@ -10,7 +10,7 @@ resource "digitalocean_droplet" "www" {
     user        = "root"
     type        = "ssh"
     private_key = file(var.private_ssh_key)
-    timeout     = "60s"
+    timeout     = "120s"
   }
 
   provisioner "remote-exec" {
@@ -20,9 +20,9 @@ resource "digitalocean_droplet" "www" {
       "apt install -y apache2",
       "apt install -y certbot",
       "apt install -y python-certbot-apache",
-      "a2enmod rewrite", 
-      "a2enmod proxy", 
-      "a2enmod proxy_http", 
+      "a2enmod rewrite",
+      "a2enmod proxy",
+      "a2enmod proxy_http",
       "a2enmod ssl",
       "rm /var/www/html/index.html",
       "service apache2 restart"
